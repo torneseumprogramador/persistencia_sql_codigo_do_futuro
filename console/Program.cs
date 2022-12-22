@@ -1,5 +1,4 @@
-﻿using ConsoleApp.Models;
-using ConsoleApp.UI;
+﻿using ConsoleApp.UI;
 
 while (true)
 {

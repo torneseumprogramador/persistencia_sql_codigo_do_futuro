@@ -1,6 +1,6 @@
 using MySql.Data.MySqlClient;
 
-namespace ConsoleApp.Models;
+namespace Negocio.Models;
 
 public class Cliente
 {
@@ -55,7 +55,7 @@ public class Cliente
         return clientes;
     }
 
-    internal static List<Cliente> Todos()
+    public static List<Cliente> Todos()
     {
         var clientes = new List<Cliente>();
         using(var conn = new MySqlConnection(conexao))

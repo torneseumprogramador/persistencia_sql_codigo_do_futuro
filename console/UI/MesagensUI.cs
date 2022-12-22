@@ -1,4 +1,4 @@
-using ConsoleApp.Models;
+using Negocio.Models;
 
 namespace ConsoleApp.UI;
 
