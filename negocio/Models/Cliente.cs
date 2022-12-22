@@ -95,4 +95,31 @@ public class Cliente
             conn.Close();
         }
     }
+
+    public static Cliente? BuscaPorId(int id)
+    {
+        var cliente = new Cliente();
+        using(var conn = new MySqlConnection(conexao))
+        {
+            conn.Open();
+            var query = $"""
+                select * from clientes where id = '{id}'
+            """;
+
+            var command = new MySqlCommand(query, conn);
+            var dataReader = command.ExecuteReader();
+            while(dataReader.Read())
+            {
+                cliente = new Cliente{
+                    Id = Convert.ToInt32(dataReader["id"]),
+                    Nome = dataReader["nome"].ToString(),
+                    Email = dataReader["email"].ToString(),
+                };
+            }
+
+            conn.Close();
+        }
+
+        return cliente.Id == 0 ? null : cliente;
+    }
 }
