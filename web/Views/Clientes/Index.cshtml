@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Negocio.Models
+@{
     ViewData["Title"] = "Clientes";
 }
 
@@ -6,6 +7,8 @@
     <h1 class="display-4">Lista de clientes</h1>
 </div>
 
+<hr>
+<a href="/clientes/novo" class="btn btn-primary">Novo</a>
 <hr>
 
 <table class="table">
@@ -19,16 +22,28 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>
-        <a href="/clientes/1/editar" class="btn btn-warning">Editar</a>
-      </td>
-      <td>
-        <a href="/clientes/1/deletar" class="btn btn-danger">Editar</a>
-      </td>
-    </tr>
+    @foreach (Cliente cliente in ViewBag.clientes)
+    {
+        <tr>
+            <th scope="row">@cliente.Id</th>
+            <td>@cliente.Nome</td>
+            <td>@cliente.Email</td>
+            <td>
+                <a href="/clientes/@cliente.Id/editar" class="btn btn-warning">Editar</a>
+            </td>
+            <td>
+                <a href="#" onclick="excluir(@cliente.Id)" class="btn btn-danger">Apagar</a>
+            </td>
+        </tr>
+    }
   </tbody>
 </table>
+
+<script>
+  const excluir = (id) => {
+    if(confirm('Confirma?'))
+    {
+      window.location.href = '/clientes/' + id + '/deletar';
+    }
+  }
+</script>
