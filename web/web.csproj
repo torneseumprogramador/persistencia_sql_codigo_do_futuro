@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\negocio\negocio.csproj" />
-    <ProjectReference Include="..\database\database.csproj" />
+    <ProjectReference Include="..\database.mysql\database.mysql.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

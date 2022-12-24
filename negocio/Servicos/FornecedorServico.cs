@@ -1,5 +1,4 @@
-using MySql.Data.MySqlClient;
-using Database.Repositorios.Interfaces;
+using Database.Interfaces;
 using Negocio.Entidades;
 
 namespace Negocio.Servicos;

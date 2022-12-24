@@ -1,5 +1,5 @@
 using Negocio.Entidades;
-using Database.Repositorios.Interfaces;
+using Database.Interfaces;
 
 namespace negocio.testes.Repositorios.Mocks;
 
