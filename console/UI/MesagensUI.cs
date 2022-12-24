@@ -1,4 +1,3 @@
-using Negocio.Models;
 
 namespace ConsoleApp.UI;
 

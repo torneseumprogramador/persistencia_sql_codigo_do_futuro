@@ -1,9 +1,12 @@
-using Negocio.Models;
+using Database.Repositorios;
+using Negocio.Entidades;
+using Negocio.Servicos;
 
 namespace ConsoleApp.UI;
 
 internal class ClientesUI
 {
+    private static ClienteServico clienteServico = new ClienteServico(new Repositorio<Cliente>());
     public static void Cadastrar()
     {
         var cliente = new Cliente();
@@ -15,7 +18,7 @@ internal class ClientesUI
         Console.WriteLine("Email:");
         cliente.Email = Console.ReadLine();
 
-        cliente.Salvar();
+        clienteServico.Salvar(cliente);
 
         MesagensUI.Mensagem("Cliente cadastrado com sucesso !!!");
     }
@@ -34,7 +37,7 @@ internal class ClientesUI
             return;
         }
 
-        var clientes = Cliente.BuscaPorIdOuEmail(idOuEmail);
+        var clientes = clienteServico.BuscaPorIdOuEmail(idOuEmail);
         if(clientes.Count == 0)
         {
             MesagensUI.Mensagem("Cliente não localizado");
@@ -60,7 +63,7 @@ internal class ClientesUI
         Console.WriteLine("Novo Email:");
         cliente.Email = Console.ReadLine();
 
-        cliente.Salvar();
+        clienteServico.Salvar(cliente);
 
         Console.Clear();
         Console.WriteLine("Cliente atualizado com sucesso !!!");
@@ -71,7 +74,7 @@ internal class ClientesUI
     internal static void Listar()
     {
         Console.WriteLine("====== Lista de clientes ========");
-        var clientes = Cliente.Todos();
+        var clientes = clienteServico.Todos();
         foreach(var clienteDb in clientes)
         {
             Console.WriteLine("Id: "+ clienteDb.Id);

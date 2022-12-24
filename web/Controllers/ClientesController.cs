@@ -1,14 +1,17 @@
-﻿using System.Diagnostics;
+﻿using Database.Repositorios;
 using Microsoft.AspNetCore.Mvc;
-using Negocio.Models;
+using Negocio.Entidades;
+using Negocio.Servicos;
 
 namespace web.Controllers;
 
 public class ClientesController : Controller
 {
+    private static ClienteServico clienteServico = new ClienteServico(new Repositorio<Cliente>());
+
     public IActionResult Index()
     {
-        ViewBag.clientes = Cliente.Todos();
+        ViewBag.clientes = clienteServico.Todos();
         return View();
     }
 
@@ -25,7 +28,7 @@ public class ClientesController : Controller
             return View();
         }
 
-        cliente.Salvar();
+        clienteServico.Salvar(cliente);
 
         return Redirect("/clientes");
     }
@@ -33,7 +36,7 @@ public class ClientesController : Controller
     [Route("/clientes/{id}/editar")]
     public IActionResult Editar([FromRoute] int id)
     {
-        ViewBag.cliente = Cliente.BuscaPorId(id);
+        ViewBag.cliente = clienteServico.BuscaPorId(id);
         return View();
     }
 
@@ -41,14 +44,14 @@ public class ClientesController : Controller
     public IActionResult Atualizar([FromRoute] int id, [FromForm] Cliente cliente)
     {
         cliente.Id = id;
-        cliente.Salvar();
+        clienteServico.Salvar(cliente);
         return Redirect("/clientes");
     }
 
     [Route("/clientes/{id}/deletar")]
     public IActionResult Apagar([FromRoute] int id)
     {
-        Cliente.ApagaPorId(id);
+        clienteServico.ApagaPorId(id);
         return Redirect("/clientes");
     }
 }

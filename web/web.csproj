@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\negocio\negocio.csproj" />
+    <ProjectReference Include="..\database\database.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
