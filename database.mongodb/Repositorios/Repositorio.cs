@@ -5,6 +5,9 @@ namespace DatabaseMongoDb.Repositorios;
 
 public class Repositorio<T> : IRepositorio<T>
 {
+    // exemplo de implementação driver mongo
+    // https://github.com/torneseumprogramador/api-desafio21dias-pais/blob/main/Servico/PaisMongodb.cs
+
     private  readonly string? conexao = Environment.GetEnvironmentVariable("DATABASE_URL");
 
     public void Salvar(T obj)

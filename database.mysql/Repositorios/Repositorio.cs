@@ -8,6 +8,10 @@ namespace DatabaseMysql.Repositorios;
 
 public class Repositorio<T> : IRepositorio<T>
 {
+    // exemplo de implementação driver mysql
+    // https://github.com/Didox/Desafio21dias_TDD_ORM_Repository/blob/main/APIDesafio/Servicos/Database/SqlRepositorio.cs
+
+
     private  readonly string? conexao = Environment.GetEnvironmentVariable("DATABASE_URL");
 
     private string NomeDaTabela()
